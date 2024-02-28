@@ -1,7 +1,22 @@
 from commands2 import Subsystem
 from phoenix6.hardware import TalonFX
 from wpimath.kinematics import ChassisSpeeds, SwerveDrive4Kinematics, SwerveModulePosition, SwerveModuleState
+from math import fabs, pi
+from constants import *
 import phoenix6
+
+def meters_to_rots(meters: float, ratio: float) -> float:
+    return meters / (pi * RKelly.k_wheel_size) * ratio
+
+def rots_to_meters(rotation: float, ratio: float=1) -> float:
+    return (rotation / ratio) * (pi * RKelly.k_wheel_size)
+
+def rots_to_degs(rotation: float) -> float:
+    return rotation * 360
+
+def degs_to_rots(degrees: float) -> float:
+    return degrees / 360
+
 
 class SwerveModule(Subsystem):
     
